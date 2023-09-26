@@ -39,6 +39,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
 
   use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope-file-browser.nvim"
 
   use 'andweeb/presence.nvim'
 
