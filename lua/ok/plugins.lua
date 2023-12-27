@@ -40,7 +40,8 @@ return packer.startup(function(use)
 
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-file-browser.nvim"
-
+  use 'nvim-telescope/telescope-media-files.nvim'
+  
   use 'andweeb/presence.nvim'
 
   use "preservim/tagbar"
@@ -84,7 +85,7 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets"
 
   --themes
-  use "NLKNguyen/papercolor-theme"
+  use 'pappasam/papercolor-theme-slim'
   use "navarasu/onedark.nvim"
   use 'folke/tokyonight.nvim'
 
@@ -94,6 +95,7 @@ return packer.startup(function(use)
 
   use "akinsho/toggleterm.nvim"
 
+  use 'nvim-tree/nvim-web-devicons'
   
 
   -- Automatically set up your configuration after cloning packer.nvim

@@ -81,9 +81,11 @@ telescope.setup {
 
   extensions = {
     file_browser = {
-      theme = "ivy",
+      --theme = "ivy",
       -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
+      cwd_to_path = true,
+	  depth = 1,
+	  hijack_netrw = true,
       mappings = {
         ["i"] = {
           -- your custom insert mode mappings
@@ -93,6 +95,13 @@ telescope.setup {
         },
       },
     },
+	media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = {"png", "webp", "jpg", "jpeg"},
+      -- find command (defaults to `fd`)
+      find_cmd = "rg"
+    }
   },
   -- pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -110,12 +119,15 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
 }
 
+require("telescope").load_extension "file_browser"
+
+require('telescope').load_extension('media_files')
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, {desc = '[/] Fuzzily search in current buffer]'})
 
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>h', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>w', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -128,4 +140,11 @@ vim.keymap.set('n', '<leader>ggg', require('telescope.builtin').git_commits)
 vim.keymap.set('n', '<leader>d', require('telescope.builtin').diagnostics)
 vim.keymap.set('n', '<leader>de', require('telescope.builtin').lsp_definitions)
 
+--telescope-file-browser
+vim.api.nvim_set_keymap(
+  "n",
+  "<space>fb",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  { noremap = true }
+)
 
