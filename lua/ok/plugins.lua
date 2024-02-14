@@ -88,6 +88,7 @@ return packer.startup(function(use)
   use 'pappasam/papercolor-theme-slim'
   use "navarasu/onedark.nvim"
   use 'folke/tokyonight.nvim'
+  use "sainnhe/sonokai"
 
   --hex editor
   use "RaafatTurki/hex.nvim"
@@ -111,7 +112,6 @@ return packer.startup(function(use)
     style = 'darker'
   }
   require 'hex'.setup()
-
 
 
 end)

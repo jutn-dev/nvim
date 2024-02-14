@@ -137,8 +137,8 @@ vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status)
 vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches)
 vim.keymap.set('n', '<leader>ggg', require('telescope.builtin').git_commits)
 
-vim.keymap.set('n', '<leader>d', require('telescope.builtin').diagnostics)
-vim.keymap.set('n', '<leader>de', require('telescope.builtin').lsp_definitions)
+vim.keymap.set('n', '<leader>d', require('telescope.builtin').lsp_definitions)
+vim.keymap.set('n', '<leader>r', require('telescope.builtin').lsp_references)
 
 --telescope-file-browser
 vim.api.nvim_set_keymap(
