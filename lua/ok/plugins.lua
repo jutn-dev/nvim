@@ -57,8 +57,8 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig"
   use "j-hui/fidget.nvim"
 
-  
-  use 'simrat39/rust-tools.nvim'
+  use "mrcjkb/rustaceanvim"
+  --use 'simrat39/rust-tools.nvim'
   use "rust-lang/rust.vim"
   use "saecki/crates.nvim"
   -- Debugging

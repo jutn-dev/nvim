@@ -3,7 +3,7 @@ local servers = {
 	"jsonls",
 	"lua_ls",
 	"csharp_ls",
-	"rust_analyzer"
+--	"rust_analyzer"
 --	"gdtoolkit",
 }
 

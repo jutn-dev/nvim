@@ -219,15 +219,15 @@ _G.packer_plugins = {
     path = "/home/juho/.local/share/nvim/site/pack/packer/start/presence.nvim",
     url = "https://github.com/andweeb/presence.nvim"
   },
-  ["rust-tools.nvim"] = {
-    loaded = true,
-    path = "/home/juho/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
-    url = "https://github.com/simrat39/rust-tools.nvim"
-  },
   ["rust.vim"] = {
     loaded = true,
     path = "/home/juho/.local/share/nvim/site/pack/packer/start/rust.vim",
     url = "https://github.com/rust-lang/rust.vim"
+  },
+  rustaceanvim = {
+    loaded = true,
+    path = "/home/juho/.local/share/nvim/site/pack/packer/start/rustaceanvim",
+    url = "https://github.com/mrcjkb/rustaceanvim"
   },
   sonokai = {
     loaded = true,
