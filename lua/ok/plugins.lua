@@ -38,6 +38,8 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "windwp/nvim-autopairs"
 
+  use "nvim-neotest/nvim-nio"
+
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-file-browser.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
@@ -112,7 +114,5 @@ return packer.startup(function(use)
     style = 'darker'
   }
   require 'hex'.setup()
-
-
 end)
 
