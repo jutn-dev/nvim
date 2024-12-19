@@ -4,11 +4,12 @@ return {
 	dependencies = {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-calc",
-	"hrsh7th/cmp-nvim-lsp",
+	{"hrsh7th/cmp-nvim-lsp",},
 	"hrsh7th/cmp-path",
 	"Saecki/crates.nvim",
 	{"L3MON4D3/LuaSnip",
 	  opt = {
+		  lazy = false,
 		  history = false,
 		},
 	},
@@ -54,6 +55,7 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -73,33 +75,40 @@ cmp.setup {
     },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+   ['<CR>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            if luasnip.expandable() then
+                luasnip.expand()
+            else
+                cmp.confirm({
+                    select = true,
+                })
+            end
+        else
+            fallback()
+        end
+    end),
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      --elseif luasnip.expand_or_jumpable() then
-      --  luasnip.expand_or_jump()
+      elseif luasnip.locally_jumpable(1) then
+        luasnip.jump(1)
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end, { "i", "s" }),
+
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      --elseif luasnip.jumpable(-1) then
-      --  luasnip.jump(-1)
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end, { "i", "s" }),
+	--
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -117,12 +126,12 @@ cmp.setup {
     end,
   },
   sources = {
-	{ name = "hrsh7th/cmp-calc"},
+	--{ name = "hrsh7th/cmp-calc"},
 	{ name = "nvim_lsp"},
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-	{ name = "crates" },
+	--{ name = "crates" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

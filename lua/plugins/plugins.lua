@@ -23,7 +23,9 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 	  },
 	  config = function()
-		vim.lsp.inlay_hint.enable(true, { 0 })
+	  vim.lsp.inlay_hint.enable(true, { 0 })
+
+	  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	  require("mason").setup()
 		require("mason-lspconfig").setup()
 	    require("mason-lspconfig").setup_handlers {
@@ -31,7 +33,9 @@ return {
           -- and will be called for each installed server that doesn't have
           -- a dedicated handler.
           function (server_name) -- default handler (optional)
-              require("lspconfig")[server_name].setup {}
+              require("lspconfig")[server_name].setup {
+			  capabilities = capabilities,
+		  }
           end,
           -- Next, you can provide a dedicated handler for specific servers.
           -- For example, a handler override for the `rust_analyzer`:
