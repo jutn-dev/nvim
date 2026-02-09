@@ -1,6 +1,10 @@
 return {
 	{
-      'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      'nvim-telescope/telescope.nvim',
+	  dependencies = {
+		'nvim-lua/plenary.nvim',
+		"nvim-tree/nvim-web-devicons",
+		},
 	  config = function()
 		require('telescope').setup{
 		  extensions = {
@@ -11,19 +15,11 @@ return {
 			  depth = 1,
 			  hijack_netrw = true,
 			  hidden = true,
-    		  mappings = {
-		       ["i"] = {
-				-- your custom insert mode mappings
-				},
-				["n"] = {
-				-- your custom normal mode mappings
-				},
 			  },
 			},
 		  }
-		}
-	  require("telescope").load_extension "file_browser"
 
+		require("telescope").load_extension "file_browser"
 
 	  vim.keymap.set('n', '<space>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 	  vim.keymap.set('n', '<space><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
@@ -42,15 +38,12 @@ return {
 	  vim.keymap.set('n', '<space>d', require('telescope.builtin').lsp_definitions)
 	  vim.keymap.set('n', '<space>r', require('telescope.builtin').lsp_references)
 
-vim.keymap.set("n", "<space>fb", function()
-	require("telescope").extensions.file_browser.file_browser()
+	vim.keymap.set("n", "<space>fb", function()
+	
+		require("telescope").extensions.file_browser.file_browser()
 end)
 
 	end,
-	  dependencies = { 
-		'nvim-lua/plenary.nvim',
-		"nvim-tree/nvim-web-devicons",
-	},
   },
 
   {

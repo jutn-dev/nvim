@@ -1,36 +1,22 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function() 
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-          ensure_installed = { "rust", "toml", "c", "lua", "vim", "vimdoc", "query", "javascript", "html" },
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true },  
-        })
-    end
-
-  --{
---	"nvim-treesitter/nvim-treesitter",
---	build = ":TSUpdate",
- --   lazy = false,
---	config = {
---	  function()
---	  require("nvim-treesitter.config").setup {
---	    ensure_installed = {"rust"},
---		sync_install = false, 
---		ignore_install = { "" }, -- List of parsers to ignore installing-
---		highlight = {
---		  enable = true, -- false will disable the whole extension
---		  disable = { "" }, -- list of language that will be disabled
---	      additional_vim_regex_highlighting = true,
-
---		},
---		indent = { enable = true, disable = {  } },
---	  }
---	end
---	},
---  },
+	{
+    	"nvim-treesitter/nvim-treesitter",
+	    build = ":TSUpdate",
+		lazy = false,
+	    config = function()
+	        local ensure_installed = { "rust", "toml", "c", "lua", "vim", "vimdoc", "query", "javascript", "html" }
+			require("nvim-treesitter").install(ensure_installed):wait(300000)
+			vim.api.nvim_create_autocmd('FileType', {
+			pattern = {"*"},
+	  		callback = function(args)
+					local lang = vim.treesitter.language.get_lang(args.match)
+					-- Check if treesitter language exists
+					if vim.treesitter.query.get(lang, "highlights") then
+						vim.treesitter.start()
+					end
+				end,
+			})
+		end,
+	},
+	"nvim-treesitter/nvim-treesitter-context"
 }
