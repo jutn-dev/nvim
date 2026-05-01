@@ -1,11 +1,9 @@
-return {
-	{
-      'nvim-telescope/telescope.nvim',
-	  dependencies = {
-		'nvim-lua/plenary.nvim',
-		"nvim-tree/nvim-web-devicons",
-		},
-	  config = function()
+vim.pack.add({
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-telescope/telescope-file-browser.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+})
 		require('telescope').setup{
 		  extensions = {
 			file_browser = {
@@ -43,12 +41,3 @@ return {
 		require("telescope").extensions.file_browser.file_browser()
 end)
 
-	end,
-  },
-
-  {
-  "nvim-telescope/telescope-file-browser.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-  
-}
