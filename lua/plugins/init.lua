@@ -1,0 +1,10 @@
+require("plugins/themes")
+require("plugins/treesitter")
+require("plugins/telescope")
+require("plugins/cmp")
+require("plugins/lsp")
+require("plugins/lualine")
+require("plugins/toggleterm")
+require("plugins/rust")
+require("plugins/flutter")
+

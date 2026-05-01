@@ -1,20 +1,13 @@
-return {
-  {
-    "hrsh7th/nvim-cmp",
-	dependencies = {
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-calc",
-	{"hrsh7th/cmp-nvim-lsp",},
-	"hrsh7th/cmp-path",
-	"Saecki/crates.nvim",
-	{"L3MON4D3/LuaSnip",
-	  opt = {
-		  lazy = false,
-		  history = false,
-		},
-	},
-  },
-	config = function()
+vim.pack.add({
+    "https://github.com/hrsh7th/nvim-cmp",
+	"https://github.com/hrsh7th/cmp-buffer",
+	"https://github.com/hrsh7th/cmp-calc",
+	"https://github.com/hrsh7th/cmp-nvim-lsp",
+	"https://github.com/hrsh7th/cmp-path",
+	"https://github.com/Saecki/crates.nvim",
+	"https://github.com/L3MON4D3/LuaSnip",
+})
+
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
   return
@@ -143,9 +136,5 @@ cmp.setup {
   experimental = {
     ghost_text = false,
     native_menu = false,
-  },
-}
-
-  end
   },
 }
