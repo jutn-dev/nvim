@@ -7,7 +7,6 @@ local keymap = vim.api.nvim_set_keymap
 
 vim.api.nvim_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = false })
 
-
 keymap("i","<C-ö>","<Esc>",opts)
 keymap("v","<C-ö>","<Esc>",opts)
 -- Better window navigation
